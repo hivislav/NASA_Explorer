@@ -1,5 +1,7 @@
 package ru.hivislav.nasaexplorer.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +35,12 @@ class MainFragment : Fragment() {
             renderData(it)
         }
         viewModel.sendRequest()
+
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("$WIKI_BASE_URL${binding.input.text.toString()}")
+            })
+        }
     }
 
     override fun onDestroyView() {
@@ -57,5 +65,7 @@ class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
+
+        private const val WIKI_BASE_URL = "https://en.wikipedia.org/wiki/"
     }
 }

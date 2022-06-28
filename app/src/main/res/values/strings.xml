@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NASA Explorer</string>
+    <string name="mainFragmentHintWiki">Введите запрос</string>
+    <string name="main_fragment_picture_of_the_day">picture of the day</string>
 </resources>
