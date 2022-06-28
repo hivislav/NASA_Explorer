@@ -39,12 +39,15 @@ class MainViewModel(
                     liveData.postValue(AppState.Success(it))
                 }
             } else {
-                // TODO
+                response.body()?.let {
+                    val error = Throwable(response.code().toString())
+                    liveData.postValue(AppState.Error(error))
+                }
             }
         }
 
         override fun onFailure(call: Call<PictureOfTheDayDTO>, t: Throwable) {
-           // TODO("Not yet implemented")
+            liveData.postValue(AppState.Error(t))
         }
     }
 }

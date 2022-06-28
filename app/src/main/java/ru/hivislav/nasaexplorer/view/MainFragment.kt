@@ -10,8 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import coil.size.Scale
+import com.google.android.material.snackbar.Snackbar
+import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentMainBinding
+import ru.hivislav.nasaexplorer.utils.hide
 import ru.hivislav.nasaexplorer.utils.setMyDate
+import ru.hivislav.nasaexplorer.utils.show
 import ru.hivislav.nasaexplorer.viewmodel.AppState
 import ru.hivislav.nasaexplorer.viewmodel.MainViewModel
 import java.util.*
@@ -37,6 +42,7 @@ class MainFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner) {
             renderData(it)
         }
+        binding.mainFragmentChipToday.isChecked = true
         viewModel.sendRequest()
 
         binding.inputLayout.setEndIconOnClickListener {
@@ -65,13 +71,20 @@ class MainFragment : Fragment() {
 
     private fun renderData(appState: AppState) {
         when (appState) {
-            is AppState.Error -> {// TODO
+            is AppState.Error -> {
+                binding.loadingLayout.hide()
+                Snackbar.make(binding.root, appState.error.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction(
+                    getString(R.string.snackbar_error_try_again)) {viewModel.sendRequest()}.show()
             }
-            AppState.Loading -> {// TODO
+
+            is AppState.Loading -> { binding.loadingLayout.show()
             }
+
             is AppState.Success -> {
+                binding.loadingLayout.hide()
                 binding.mainFragmentPicOfTheDay.load(appState.pictureOfTheDayResponseDTO.url) {
-                    //TODO
+                    this.placeholder(R.drawable.placeholder)
+                    this.scale(Scale.FIT)
                 }
                 binding.mainFragmentPicOfTheDayDescription.text = appState.pictureOfTheDayResponseDTO.explanation
             }

@@ -1,85 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.MainFragment">
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/mainFragmentChipGroup"
+    <ProgressBar
+        android:id="@+id/loadingLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/main_fragment_padding"
-        app:singleSelection="true">
+        android:layout_gravity="center"
+        tools:visibility="visible"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/mainFragmentChipDayBeforeYesterday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_fragment_chip_day_before_yesterday"/>
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/mainFragmentChipYesterday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_fragment_chip_yesterday"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/mainFragmentChipToday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_fragment_chip_today"/>
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/mainFragmentPicOfTheDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/main_fragment_padding"
-        app:layout_constraintTop_toBottomOf="@id/mainFragmentChipGroup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/main_fragment_picture_of_the_day">
-    </androidx.appcompat.widget.AppCompatImageView>
-
-    <TextView
-        android:id="@+id/mainFragmentPicOfTheDayDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/main_fragment_padding"
-        app:layout_constraintTop_toBottomOf="@id/mainFragmentPicOfTheDay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayout"
-        android:padding="@dimen/main_fragment_padding"
-        android:hint="@string/mainFragmentHintWiki"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:endIconDrawable="@drawable/ic_wikipedia"
-        app:endIconMode="custom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mainFragmentPicOfTheDayDescription"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            tools:context=".view.MainFragment">
 
-    </com.google.android.material.textfield.TextInputLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/mainFragmentChipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/main_fragment_padding"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/mainFragmentChipDayBeforeYesterday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_fragment_chip_day_before_yesterday"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/mainFragmentChipYesterday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_fragment_chip_yesterday"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/mainFragmentChipToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_fragment_chip_today"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mainFragmentPicOfTheDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/main_fragment_padding"
+                app:layout_constraintTop_toBottomOf="@id/mainFragmentChipGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constrainedWidth="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/main_fragment_picture_of_the_day">
+            </androidx.appcompat.widget.AppCompatImageView>
+
+            <TextView
+                android:id="@+id/mainFragmentPicOfTheDayDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/main_fragment_padding"
+                app:layout_constraintTop_toBottomOf="@id/mainFragmentPicOfTheDay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout"
+                android:padding="@dimen/main_fragment_padding"
+                android:hint="@string/mainFragmentHintWiki"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:endIconDrawable="@drawable/ic_wikipedia"
+                app:endIconMode="custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/mainFragmentPicOfTheDayDescription"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
