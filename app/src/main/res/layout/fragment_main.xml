@@ -12,12 +12,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.MainFragment">
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/mainFragmentChipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/main_fragment_padding"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainFragmentChipDayBeforeYesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_chip_day_before_yesterday"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainFragmentChipYesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_chip_yesterday"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainFragmentChipToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_chip_today"/>
+
+    </com.google.android.material.chip.ChipGroup>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/mainFragmentPicOfTheDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/main_fragment_padding"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainFragmentChipGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/main_fragment_picture_of_the_day">

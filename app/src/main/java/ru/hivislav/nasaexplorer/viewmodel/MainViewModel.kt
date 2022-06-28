@@ -21,8 +21,12 @@ class MainViewModel(
 
     fun sendRequest() {
         liveData.postValue(AppState.Loading)
-        repositoryImpl.getPictureOfTheDayApi().getPictureOfTheDay(BuildConfig.NASA_API_KEY)
-            .enqueue(callback)
+        repositoryImpl.getPictureOfTheDayApi(callback)
+    }
+
+    fun sendRequestByDate(date: String) {
+        liveData.postValue(AppState.Loading)
+        repositoryImpl.getPictureOfTheDayByDate(date, callback)
     }
 
     private val callback = object: Callback<PictureOfTheDayDTO> {
