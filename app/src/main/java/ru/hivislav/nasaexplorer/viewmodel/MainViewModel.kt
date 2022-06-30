@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.hivislav.nasaexplorer.BuildConfig
 import ru.hivislav.nasaexplorer.model.entities.PictureOfTheDayDTO
 import ru.hivislav.nasaexplorer.model.repository.RepositoryImpl
 
