@@ -11,7 +11,6 @@ import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.load
-import coil.request.ImageRequest
 import coil.size.Scale
 import com.google.android.material.snackbar.Snackbar
 import ru.hivislav.nasaexplorer.R
@@ -30,6 +29,9 @@ class MainFragment : Fragment() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
+    private lateinit var imageLoader: ImageLoader
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -38,6 +40,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        buildImageLoader()
 
         viewModel.getLiveData().observe(viewLifecycleOwner) {
             renderData(it)
@@ -94,6 +98,18 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
+    private fun buildImageLoader() {
+        imageLoader = ImageLoader.Builder(requireContext())
+            .components {
+                if (SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+            }
+            .build()
+    }
+
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
@@ -102,7 +118,7 @@ class MainFragment : Fragment() {
             }
 
             is AppState.Loading -> {
-                binding.mainFragmentPicOfTheDay.load(R.drawable.loading)
+                binding.mainFragmentPicOfTheDay.load(R.drawable.loading, imageLoader)
             }
 
             is AppState.Success -> {
