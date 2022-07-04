@@ -2,15 +2,16 @@
     <string name="app_name">NASA Explorer</string>
     <string name="mainFragmentHintWiki">Введите запрос</string>
     <string name="main_fragment_picture_of_the_day">picture of the day</string>
-    <string name="main_fragment_chip_day_before_yesterday">Позавчера</string>
-    <string name="main_fragment_chip_yesterday">Вчера</string>
-    <string name="main_fragment_chip_today">Сегодня</string>
+    <string name="day_before_yesterday">Позавчера</string>
+    <string name="yesterday">Вчера</string>
+    <string name="today">Сегодня</string>
     <string name="snackbar_error_try_again">Попробуйте еще раз</string>
     <string name="navigation_one">Заглушка 1</string>
     <string name="navigation_two">Заглушка 2</string>
-    <string name="main_menu_favorite">Избранное</string>
-    <string name="main_menu_settings">Настройки</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="nav_bottom_pic_of_the_day">Картинка дня</string>
+    <string name="nav_bottom_planets">Планеты</string>
+    <string name="nav_bottom_settings">Настройки</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_floating_action_button">Main Floating Action Button</string>
     <string name="fragment_settings_tab_default_theme">Стандартная тема</string>
