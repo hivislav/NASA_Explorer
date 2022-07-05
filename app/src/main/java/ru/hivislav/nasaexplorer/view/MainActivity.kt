@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.ActivityMainBinding
 import ru.hivislav.nasaexplorer.view.picoftheday.PicOfTheDayBaseFragment
+import ru.hivislav.nasaexplorer.view.planets.PlanetsBaseFragment
 
 const val ThemeDefault = 0
 const val ThemeRed = 1
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navBottomPlanets -> {
-                    navigateTo(PlanetsFragment.newInstance())
+                    navigateTo(PlanetsBaseFragment.newInstance())
                     true
                 }
                 R.id.navBottomSettings -> {

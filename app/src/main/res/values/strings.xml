@@ -11,6 +11,9 @@
     <string name="nav_bottom_pic_of_the_day">Картинка дня</string>
     <string name="nav_bottom_planets">Планеты</string>
     <string name="nav_bottom_settings">Настройки</string>
+    <string name="planets_fragment_earth">Земля</string>
+    <string name="planets_fragment_mars">Марс</string>
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_floating_action_button">Main Floating Action Button</string>

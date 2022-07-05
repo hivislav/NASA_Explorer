@@ -1,22 +1,23 @@
-package ru.hivislav.nasaexplorer.view
+package ru.hivislav.nasaexplorer.view.planets
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ru.hivislav.nasaexplorer.databinding.FragmentPlanetsBinding
+import ru.hivislav.nasaexplorer.databinding.FragmentEarthBinding
+import ru.hivislav.nasaexplorer.databinding.FragmentPlanetsBaseBinding
 
 
-class PlanetsFragment : Fragment() {
+class EarthFragment : Fragment() {
 
-    private var _binding: FragmentPlanetsBinding? = null
+    private var _binding: FragmentEarthBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentPlanetsBinding.inflate(inflater, container, false)
+        _binding = FragmentEarthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -26,6 +27,6 @@ class PlanetsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = PlanetsFragment()
+        fun newInstance() = EarthFragment()
     }
 }
