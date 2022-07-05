@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".view.planets.MarsFragment">
 
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/marsRecycler"
+        tools:listitem="@layout/recycler_mars_holder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/bg_mars">
-    </ImageView>
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

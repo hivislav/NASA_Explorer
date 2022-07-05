@@ -5,7 +5,8 @@ import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.hivislav.nasaexplorer.model.NASA_API_BASE_URL
-import ru.hivislav.nasaexplorer.model.PictureOfTheDayAPI
+import ru.hivislav.nasaexplorer.model.NASAAPI
+import ru.hivislav.nasaexplorer.model.entities.ListOfMarsPhotoDTO
 import ru.hivislav.nasaexplorer.model.entities.PictureOfTheDayDTO
 
 class RepositoryImpl: Repository {
@@ -14,7 +15,7 @@ class RepositoryImpl: Repository {
             .baseUrl(NASA_API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
-            .create(PictureOfTheDayAPI::class.java)
+            .create(NASAAPI::class.java)
     }
 
     override fun getPictureOfTheDayApi(callback: Callback<PictureOfTheDayDTO>) {
@@ -23,5 +24,9 @@ class RepositoryImpl: Repository {
 
     override fun getPictureOfTheDayByDate(date: String, callback: Callback<PictureOfTheDayDTO>) {
         retrofit.getPictureOfTheDayByDate(date = date).enqueue(callback)
+    }
+
+    override fun getMarsPhotosByDate(date: String, callback: Callback<ListOfMarsPhotoDTO>) {
+        retrofit.getMarsPhotosByDate(date = date).enqueue(callback)
     }
 }
