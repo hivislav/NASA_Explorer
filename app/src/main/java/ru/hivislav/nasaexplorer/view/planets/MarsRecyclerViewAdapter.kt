@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
@@ -39,10 +40,11 @@ class MarsRecyclerViewAdapter:RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsH
         fun bind(marsPhoto : MarsPhotoDTO) {
             itemView.apply {
                 findViewById<ImageView>(R.id.photoRecyclerMarsHolder).load(marsPhoto.imgSrc) {
-                    scale(Scale.FIT)
                     placeholder(R.drawable.bg_mars)
                 }
+                findViewById<TextView>(R.id.earthDateRecyclerMarsHolder).text = marsPhoto.earthDate
             }
         }
     }
 }
+

@@ -2,13 +2,25 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/height_mars_recycler_holder"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/earthDateRecyclerMarsHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        android:textSize="@dimen/recycler_mars_holder_earth_date_text_size">
+
+    </TextView>
 
     <ImageView
         android:id="@+id/photoRecyclerMarsHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         tools:src="@drawable/bg_mars">
     </ImageView>
 

@@ -52,15 +52,14 @@ class MarsFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner) {
             renderData(it)
             }
-        viewModel.sendRequestByDate("2015-6-3")
+        viewModel.sendRequestByDate("2016-6-3")
         }
-
 
     private fun renderData(appState: MarsAppState) {
         when (appState) {
             is MarsAppState.Error -> {
                 Snackbar.make(binding.root, appState.error.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction(
-                    getString(R.string.snackbar_error_try_again)) {viewModel.sendRequestByDate("2015-6-3")}.show()
+                    getString(R.string.snackbar_error_try_again)) {viewModel.sendRequestByDate("2016-6-3")}.show()
             }
 
             is MarsAppState.Loading -> {
@@ -72,7 +71,6 @@ class MarsFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

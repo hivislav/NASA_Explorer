@@ -7,8 +7,9 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondaryVariant">#80EEB7F8</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <item name="fontFamily">@font/audiowide</item>
 
         <!-- Status bar color. -->
@@ -18,18 +19,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="chipStyle">@style/MyChipStyle</item>
-        <item name="bottomAppBarStyle">@style/myBottomAppBarStyle</item>
+        <item name="bottomNavigationStyle">@style/myBottomNavigationStyle</item>
+
     </style>
 
-    <style name="MyChipStyle" parent="Widget.Material3.Chip.Suggestion">
-        <item name="chipBackgroundColor">@drawable/main_fragment_selector_chips</item>
+    <style name="myBottomNavigationStyle" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@style/myItemActiveIndicatorStyle</item>
     </style>
 
-    <style name="myBottomAppBarStyle" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="backgroundTint">?attr/colorSecondaryVariant</item>
+    <style name="myItemActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">?attr/colorSecondaryVariant</item>
     </style>
-
 
     <style name="Theme.NASAExplorerRed" parent="Theme.NASAExplorer">
         <!-- Primary brand color. -->
@@ -38,18 +38,14 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/yellow</item>
-        <item name="colorSecondaryVariant">@color/orange</item>
+        <item name="colorSecondaryVariant">#80FD7E55</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
 
-        <item name="chipStyle">@style/Widget.Material3.Chip.Suggestion</item>
-        <item name="bottomAppBarStyle">@style/myBottomAppBarStyle</item>
     </style>
 
     <style name="Theme.NASAExplorerSilverGold" parent="Theme.NASAExplorer">
@@ -59,16 +55,12 @@
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/yellow</item>
-        <item name="colorSecondaryVariant">@color/silver</item>
+        <item name="colorSecondaryVariant">#80C3C3C1</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-
-        <item name="chipStyle">@style/Widget.Material3.Chip.Suggestion</item>
     </style>
 </resources>

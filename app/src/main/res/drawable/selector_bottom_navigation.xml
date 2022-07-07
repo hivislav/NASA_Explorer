@@ -6,7 +6,7 @@
         android:color="@android:color/darker_gray"
         android:state_checked="false"/>
     <item
-        android:color="@android:color/black"
+        android:color="@color/grey_bottom_navigation_active_item"
         android:state_checked="true"/>
 
 </selector>
