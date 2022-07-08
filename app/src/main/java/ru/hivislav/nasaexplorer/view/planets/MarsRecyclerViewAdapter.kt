@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.size.Scale
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.model.entities.MarsPhotoDTO
 
@@ -36,7 +35,7 @@ class MarsRecyclerViewAdapter:RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsH
         return marsPhotoData.size
     }
 
-    inner class MarsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MarsHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(marsPhoto : MarsPhotoDTO) {
             itemView.apply {
                 findViewById<ImageView>(R.id.photoRecyclerMarsHolder).load(marsPhoto.imgSrc) {

@@ -7,7 +7,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.hivislav.nasaexplorer.model.entities.ListOfMarsPhotoDTO
-import ru.hivislav.nasaexplorer.model.entities.PictureOfTheDayDTO
 import ru.hivislav.nasaexplorer.model.repository.RepositoryImpl
 
 class MarsViewModel(
@@ -18,7 +17,6 @@ class MarsViewModel(
     fun getLiveData(): LiveData<MarsAppState> {
         return liveData
     }
-
 
     fun sendRequestByDate(date: String) {
         liveData.postValue(MarsAppState.Loading)

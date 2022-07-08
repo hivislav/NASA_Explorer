@@ -20,4 +20,5 @@
     <string name="fragment_settings_tab_default_theme">Стандартная тема</string>
     <string name="fragment_settings_tab_red_theme">Красная тема</string>
     <string name="fragment_settings_tab_gold_theme">Золотая тема</string>
+    <string name="mars_photo_placeholder">Mars photo placeholder</string>
 </resources>

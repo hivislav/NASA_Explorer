@@ -8,15 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
-import coil.size.Scale
 import com.google.android.material.snackbar.Snackbar
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentMarsBinding
-import ru.hivislav.nasaexplorer.databinding.FragmentPlanetsBaseBinding
-import ru.hivislav.nasaexplorer.utils.setMyDate
-import ru.hivislav.nasaexplorer.view.picoftheday.PicOfTheDayFragment
-import ru.hivislav.nasaexplorer.viewmodel.AppState
 import ru.hivislav.nasaexplorer.viewmodel.MarsAppState
 import ru.hivislav.nasaexplorer.viewmodel.MarsViewModel
 

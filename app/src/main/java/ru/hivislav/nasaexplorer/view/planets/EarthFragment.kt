@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.hivislav.nasaexplorer.databinding.FragmentEarthBinding
-import ru.hivislav.nasaexplorer.databinding.FragmentPlanetsBaseBinding
 
 
 class EarthFragment : Fragment() {

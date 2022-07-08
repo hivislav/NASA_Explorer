@@ -4,8 +4,8 @@ import com.google.gson.GsonBuilder
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.hivislav.nasaexplorer.model.NASA_API_BASE_URL
 import ru.hivislav.nasaexplorer.model.NASAAPI
+import ru.hivislav.nasaexplorer.model.NASA_API_BASE_URL
 import ru.hivislav.nasaexplorer.model.entities.ListOfMarsPhotoDTO
 import ru.hivislav.nasaexplorer.model.entities.PictureOfTheDayDTO
 

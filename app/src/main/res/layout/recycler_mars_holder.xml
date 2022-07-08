@@ -21,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:src="@drawable/bg_mars">
+        tools:src="@drawable/bg_mars"
+        android:contentDescription="@string/mars_photo_placeholder">
     </ImageView>
 
 </LinearLayout>
