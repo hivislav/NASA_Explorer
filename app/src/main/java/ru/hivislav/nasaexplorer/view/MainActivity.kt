@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.ActivityMainBinding
+import ru.hivislav.nasaexplorer.view.coordinator.CoordinatorFragment
 import ru.hivislav.nasaexplorer.view.picoftheday.PicOfTheDayBaseFragment
 import ru.hivislav.nasaexplorer.view.planets.PlanetsBaseFragment
 
@@ -45,6 +46,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navBottomSettings -> {
                     navigateTo(SettingsFragment.newInstance())
+                    true
+                }
+                R.id.navBottomCoordinator -> {
+                    navigateTo(CoordinatorFragment.newInstance())
                     true
                 }
                 else -> false

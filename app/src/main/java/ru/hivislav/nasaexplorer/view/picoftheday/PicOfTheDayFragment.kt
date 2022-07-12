@@ -85,7 +85,8 @@ class PicOfTheDayFragment : Fragment() {
             }
 
             is AppState.Loading -> {
-                binding.mainFragmentPicOfTheDay.load(R.drawable.loading, imageLoader)
+                binding.mainFragmentPicOfTheDay.load(R.drawable.loading, imageLoader) {
+                }
             }
 
             is AppState.Success -> {
