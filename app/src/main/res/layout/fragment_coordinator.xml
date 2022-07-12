@@ -12,7 +12,7 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/white"
+        android:background="?colorPrimaryVariant"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:background="?colorPrimaryVariant"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/white"
+            app:contentScrim="?colorPrimaryVariant"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
@@ -35,6 +35,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewCoordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior=".view.coordinator.NestedBehavior"
@@ -47,12 +48,22 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/fab"
+        android:id="@+id/fabCoordinator"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/coordinator"
         app:layout_behavior=".view.coordinator.FABBehavior" />
+
+    <TextView
+        android:id="@+id/titleCoordinator"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="start"
+        android:textSize="32sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/coordinator"
+        app:layout_behavior=".view.coordinator.TextToolbarBehavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

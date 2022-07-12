@@ -18,15 +18,10 @@ class CoordinatorFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
-
 
     companion object {
         fun newInstance() = CoordinatorFragment()
