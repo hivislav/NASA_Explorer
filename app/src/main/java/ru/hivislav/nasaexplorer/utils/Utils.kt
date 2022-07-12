@@ -1,6 +1,5 @@
 package ru.hivislav.nasaexplorer.utils
 
-import ru.hivislav.nasaexplorer.view.MainFragment
 import java.text.SimpleDateFormat
 import java.util.*
 

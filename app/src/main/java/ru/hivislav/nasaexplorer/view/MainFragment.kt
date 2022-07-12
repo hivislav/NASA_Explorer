@@ -2,21 +2,20 @@ package ru.hivislav.nasaexplorer.view
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.load
 import coil.size.Scale
 import com.google.android.material.snackbar.Snackbar
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentMainBinding
-import ru.hivislav.nasaexplorer.utils.hide
 import ru.hivislav.nasaexplorer.utils.setMyDate
-import ru.hivislav.nasaexplorer.utils.show
 import ru.hivislav.nasaexplorer.viewmodel.AppState
 import ru.hivislav.nasaexplorer.viewmodel.MainViewModel
 import java.util.*
@@ -30,6 +29,9 @@ class MainFragment : Fragment() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
+    private lateinit var imageLoader: ImageLoader
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -38,6 +40,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        buildImageLoader()
 
         viewModel.getLiveData().observe(viewLifecycleOwner) {
             renderData(it)
@@ -62,29 +66,64 @@ class MainFragment : Fragment() {
                 viewModel.sendRequestByDate(currentDate.setMyDate(0))
             }
         }
+
+        (requireActivity() as MainActivity).setSupportActionBar(binding.mainBottomAppBar)
+        setHasOptionsMenu(true)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_favorite -> {}
+            R.id.action_settings -> {
+                requireActivity().supportFragmentManager.beginTransaction().hide(this)
+                    .add(R.id.container, SettingsFragment.newInstance()).addToBackStack("").commit()
+            }
+            android.R.id.home -> {
+                activity?.let {
+                    BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    private fun buildImageLoader() {
+        imageLoader = ImageLoader.Builder(requireContext())
+            .components {
+                if (SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+            }
+            .build()
+    }
+
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
-                binding.loadingLayout.hide()
                 Snackbar.make(binding.root, appState.error.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction(
                     getString(R.string.snackbar_error_try_again)) {viewModel.sendRequest()}.show()
             }
 
-            is AppState.Loading -> { binding.loadingLayout.show()
+            is AppState.Loading -> {
+                binding.mainFragmentPicOfTheDay.load(R.drawable.loading, imageLoader)
             }
 
             is AppState.Success -> {
-                binding.loadingLayout.hide()
                 binding.mainFragmentPicOfTheDay.load(appState.pictureOfTheDayResponseDTO.url) {
-                    this.placeholder(R.drawable.placeholder)
-                    this.scale(Scale.FIT)
+                    scale(Scale.FIT)
                 }
                 binding.mainFragmentPicOfTheDayDescription.text = appState.pictureOfTheDayResponseDTO.explanation
             }

@@ -6,4 +6,14 @@
     <string name="main_fragment_chip_yesterday">Вчера</string>
     <string name="main_fragment_chip_today">Сегодня</string>
     <string name="snackbar_error_try_again">Попробуйте еще раз</string>
+    <string name="navigation_one">Заглушка 1</string>
+    <string name="navigation_two">Заглушка 2</string>
+    <string name="main_menu_favorite">Избранное</string>
+    <string name="main_menu_settings">Настройки</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_floating_action_button">Main Floating Action Button</string>
+    <string name="fragment_settings_tab_default_theme">Стандартная тема</string>
+    <string name="fragment_settings_tab_red_theme">Красная тема</string>
+    <string name="fragment_settings_tab_gold_theme">Золотая тема</string>
 </resources>
