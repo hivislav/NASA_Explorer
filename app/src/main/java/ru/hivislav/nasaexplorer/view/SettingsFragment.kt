@@ -30,7 +30,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTabLayoutClicks()
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        binding.settingsTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
                     ThemeDefault -> {parentActivity.setCurrentTheme(ThemeDefault)
@@ -53,13 +53,13 @@ class SettingsFragment : Fragment() {
     private fun setTabLayoutClicks() = with(binding) {
         when(parentActivity.getCurrentTheme()) {
             ThemeDefault -> {
-                tabLayout.selectTab(tabLayout.getTabAt(ThemeDefault))
+                settingsTabLayout.selectTab(settingsTabLayout.getTabAt(ThemeDefault))
             }
             ThemeRed -> {
-                tabLayout.selectTab(tabLayout.getTabAt(ThemeRed))
+                settingsTabLayout.selectTab(settingsTabLayout.getTabAt(ThemeRed))
             }
             ThemeSilverGold -> {
-                tabLayout.selectTab(tabLayout.getTabAt(ThemeSilverGold))
+                settingsTabLayout.selectTab(settingsTabLayout.getTabAt(ThemeSilverGold))
             }
         }
     }

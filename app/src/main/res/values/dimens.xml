@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="main_fragment_padding">8dp</dimen>
+    <dimen name="bottom_navigation_height">56dp</dimen>
+    <dimen name="bottom_navigation_padding">6dp</dimen>
+    <dimen name="recycler_mars_holder_earth_date_text_size">24sp</dimen>
+    <dimen name="height_mars_recycler_holder">320dp</dimen>
 </resources>

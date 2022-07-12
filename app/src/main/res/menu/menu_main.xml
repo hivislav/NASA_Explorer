@@ -6,14 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ru.hivislav.nasaexplorer.view.MainActivity">
     <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite_menu"
-        android:title="@string/main_menu_favorite"
+        android:id="@+id/navBottomPicOfTheDay"
+        android:icon="@drawable/ic_pic_of_the_day"
+        android:title="@string/nav_bottom_pic_of_the_day"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings_menu"
-        android:title="@string/main_menu_settings"
+        android:id="@+id/navBottomPlanets"
+        android:icon="@drawable/ic_planets"
+        android:title="@string/nav_bottom_planets"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navBottomSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/nav_bottom_settings"
+        app:showAsAction="ifRoom" />
+
 </menu>
