@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.planets.MarsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/marsRecycler"
         tools:listitem="@layout/recycler_mars_holder"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

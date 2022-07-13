@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import ru.hivislav.nasaexplorer.R
@@ -38,9 +39,8 @@ class MarsFragment : Fragment() {
 
         binding.marsRecycler.also {
             it.adapter = adapter
-            it.layoutManager = LinearLayoutManager(it.context,
-                LinearLayoutManager.VERTICAL, false)
-            it.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+            it.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
+            it.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.HORIZONTAL))
         }
 
         viewModel.getLiveData().observe(viewLifecycleOwner) {
