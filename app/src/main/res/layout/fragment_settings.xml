@@ -30,4 +30,25 @@
             android:text="@string/fragment_settings_tab_gold_theme" />
     </com.google.android.material.tabs.TabLayout>
 
+    <TextView
+        android:id="@+id/settingsNightModeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_fragment_night_mode_label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsTabLayout"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/settingsNightModeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsNightModeLabel">
+
+    </com.google.android.material.switchmaterial.SwitchMaterial>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import ru.hivislav.nasaexplorer.databinding.FragmentSettingsBinding
@@ -30,6 +31,8 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTabLayoutClicks()
+        binding.settingsNightModeSwitch.isChecked = parentActivity.getNightMode()
+
         binding.settingsTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
@@ -48,6 +51,15 @@ class SettingsFragment : Fragment() {
             }
 
         })
+
+        binding.settingsNightModeSwitch.setOnCheckedChangeListener { button, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            parentActivity.setNightMode(isChecked)
+        }
     }
 
     private fun setTabLayoutClicks() = with(binding) {
