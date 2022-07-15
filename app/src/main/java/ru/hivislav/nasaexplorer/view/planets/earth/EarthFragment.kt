@@ -17,6 +17,19 @@ class EarthFragment : Fragment() {
     private var _binding: FragmentEarthBinding? = null
     private val binding get() = _binding!!
 
+    val data = arrayListOf(
+        PlanetsData("Заголовок",planetType = TYPE_HEADER),
+        PlanetsData("Earth",planetType = TYPE_EARTH),
+        PlanetsData("Earth",planetType = TYPE_EARTH),
+        PlanetsData("Mars", planetType = TYPE_MARS),
+        PlanetsData("Earth",planetType = TYPE_EARTH),
+        PlanetsData("Earth",planetType = TYPE_EARTH),
+        PlanetsData("Earth",planetType = TYPE_EARTH),
+        PlanetsData("Mars", planetType = TYPE_MARS)
+    )
+
+    lateinit var adapter: EarthRecyclerViewAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
@@ -27,19 +40,20 @@ class EarthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = arrayListOf(
-            PlanetsData("Заголовок",planetType= TYPE_HEADER),
-            PlanetsData("Earth",planetType=TYPE_EARTH),
-            PlanetsData("Earth",planetType=TYPE_EARTH),
-            PlanetsData("Mars", planetType= TYPE_MARS),
-            PlanetsData("Earth",planetType=TYPE_EARTH),
-            PlanetsData("Earth",planetType=TYPE_EARTH),
-            PlanetsData("Earth",planetType=TYPE_EARTH),
-            PlanetsData("Mars", planetType=TYPE_MARS)
-        )
-        binding.earthRecycler.adapter = EarthRecyclerViewAdapter().apply {
+        adapter = EarthRecyclerViewAdapter(callbackAdd, callbackRemove)
+        binding.earthRecycler.adapter = adapter.apply {
             setPlanetsData(data)
         }
+    }
+
+    private val callbackAdd = AddItem {
+        data.add(it, PlanetsData("Mars(new)", planetType = TYPE_MARS))
+        adapter.setListDataAdd(data, it)
+    }
+
+    private val callbackRemove = RemoveItem {
+        data.removeAt(it)
+        adapter.setListDataRemove(data, it)
     }
 
     override fun onDestroy() {
