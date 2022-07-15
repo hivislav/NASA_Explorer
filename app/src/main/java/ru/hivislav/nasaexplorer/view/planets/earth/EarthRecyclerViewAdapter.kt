@@ -17,26 +17,25 @@ class EarthRecyclerViewAdapter(
     val callbackAdd: AddItem, val callbackRemove: RemoveItem
 ) : RecyclerView.Adapter<EarthRecyclerViewAdapter.BaseHolder>() {
 
-    private var listPlanetsData: MutableList<PlanetsData> = mutableListOf()
+    private var listPlanetsData: MutableList<Pair<PlanetsData, Boolean>> = mutableListOf()
 
-    fun setPlanetsData(data: MutableList<PlanetsData>) {
+    fun setPlanetsData(data: MutableList<Pair<PlanetsData, Boolean>>) {
         listPlanetsData = data
-        notifyDataSetChanged()
     }
 
-    fun setListDataRemove(listDataNew: MutableList<PlanetsData>,position: Int){
+    fun setListDataRemove(listDataNew: MutableList<Pair<PlanetsData, Boolean>>,position: Int){
         listPlanetsData = listDataNew
         notifyItemRemoved(position)
     }
 
-    fun setListDataAdd(listDataNew: MutableList<PlanetsData>,position: Int){
+    fun setListDataAdd(listDataNew: MutableList<Pair<PlanetsData, Boolean>>,position: Int){
         listPlanetsData = listDataNew
         notifyItemInserted(position)
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return listPlanetsData[position].planetType
+        return listPlanetsData[position].first.planetType
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
@@ -65,20 +64,20 @@ class EarthRecyclerViewAdapter(
     }
 
     abstract class BaseHolder(view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(planetsData : PlanetsData)
+        abstract fun bind(data : Pair<PlanetsData, Boolean>)
     }
 
     inner class HeaderViewHolder(private val binding: RecyclerHeaderLinearHolderBinding)
         : BaseHolder(binding.root) {
-        override fun bind(planetsData: PlanetsData) {
-            binding.headerNameTitle.text = planetsData.planetName
+        override fun bind(data : Pair<PlanetsData, Boolean>) {
+            binding.headerNameTitle.text = data.first.planetName
         }
     }
 
     inner class MarsViewHolder(private val binding: RecyclerMarsLinearHolderBinding)
         : BaseHolder(binding.root) {
-        override fun bind(planetsData: PlanetsData) {
-            binding.marsNameTitle.text = planetsData.planetName
+        override fun bind(data : Pair<PlanetsData, Boolean>) {
+            binding.marsNameTitle.text = data.first.planetName
 
             binding.addItemImageView.setOnClickListener {
                 callbackAdd.add(layoutPosition)
@@ -105,13 +104,23 @@ class EarthRecyclerViewAdapter(
                     notifyItemMoved(layoutPosition, layoutPosition + 1)
                 }
             }
+
+            binding.marsDescriptionTextView.visibility =
+                if (listPlanetsData[layoutPosition].second) View.VISIBLE else View.GONE
+
+            binding.marsImageView.setOnClickListener {
+                listPlanetsData[layoutPosition] = listPlanetsData[layoutPosition].let {
+                    it.first to !it.second
+                }
+                notifyItemChanged(layoutPosition)
+            }
         }
     }
 
     inner class EarthViewHolder(private val binding: RecyclerEarthLinearHolderBinding)
         : BaseHolder(binding.root) {
-        override fun bind(planetsData: PlanetsData) {
-            binding.earthNameTitle.text = planetsData.planetName
+        override fun bind(data : Pair<PlanetsData, Boolean>) {
+            binding.earthNameTitle.text = data.first.planetName
 
             binding.addItemImageView.setOnClickListener {
                 callbackAdd.add(layoutPosition)
@@ -137,6 +146,16 @@ class EarthRecyclerViewAdapter(
                     }
                     notifyItemMoved(layoutPosition, layoutPosition + 1)
                 }
+            }
+
+            binding.earthDescriptionTextView.visibility =
+                if (listPlanetsData[layoutPosition].second) View.VISIBLE else View.GONE
+
+            binding.earthImageView.setOnClickListener {
+                listPlanetsData[layoutPosition] = listPlanetsData[layoutPosition].let {
+                    it.first to !it.second
+                }
+                notifyItemChanged(layoutPosition)
             }
         }
     }

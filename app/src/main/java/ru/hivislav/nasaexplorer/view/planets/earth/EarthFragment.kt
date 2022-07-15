@@ -18,14 +18,14 @@ class EarthFragment : Fragment() {
     private val binding get() = _binding!!
 
     val data = arrayListOf(
-        PlanetsData("Заголовок",planetType = TYPE_HEADER),
-        PlanetsData("Earth",planetType = TYPE_EARTH),
-        PlanetsData("Earth",planetType = TYPE_EARTH),
-        PlanetsData("Mars", planetType = TYPE_MARS),
-        PlanetsData("Earth",planetType = TYPE_EARTH),
-        PlanetsData("Earth",planetType = TYPE_EARTH),
-        PlanetsData("Earth",planetType = TYPE_EARTH),
-        PlanetsData("Mars", planetType = TYPE_MARS)
+        Pair(PlanetsData("Заголовок", planetType = TYPE_HEADER), false),
+        Pair(PlanetsData("Earth", planetType = TYPE_EARTH), false),
+        Pair(PlanetsData("Earth", planetType = TYPE_EARTH), false),
+        Pair(PlanetsData("Mars", planetType = TYPE_MARS), false),
+        Pair(PlanetsData("Earth", planetType = TYPE_EARTH), false),
+        Pair(PlanetsData("Earth", planetType = TYPE_EARTH), false),
+        Pair(PlanetsData("Earth", planetType = TYPE_EARTH), false),
+        Pair(PlanetsData("Mars", planetType = TYPE_MARS), false)
     )
 
     lateinit var adapter: EarthRecyclerViewAdapter
@@ -47,7 +47,7 @@ class EarthFragment : Fragment() {
     }
 
     private val callbackAdd = AddItem {
-        data.add(it, PlanetsData("Mars(new)", planetType = TYPE_MARS))
+        data.add(it, Pair(PlanetsData("Mars(new)", planetType = TYPE_MARS), false))
         adapter.setListDataAdd(data, it)
     }
 
