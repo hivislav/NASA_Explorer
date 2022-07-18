@@ -3,6 +3,7 @@ package ru.hivislav.nasaexplorer.view.planets.earth
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import kotlinx.android.synthetic.main.recycler_mars_grid_holder.view.*
@@ -15,7 +16,7 @@ import ru.hivislav.nasaexplorer.model.entities.*
 
 class EarthRecyclerViewAdapter(
     val callbackAdd: AddItem, val callbackRemove: RemoveItem
-) : RecyclerView.Adapter<EarthRecyclerViewAdapter.BaseHolder>() {
+) : RecyclerView.Adapter<EarthRecyclerViewAdapter.BaseHolder>(), ItemTouchHelperAdapter {
 
     private var listPlanetsData: MutableList<Pair<PlanetsData, Boolean>> = mutableListOf()
 
@@ -63,8 +64,15 @@ class EarthRecyclerViewAdapter(
         return listPlanetsData.size
     }
 
-    abstract class BaseHolder(view: View) : RecyclerView.ViewHolder(view) {
+    abstract class BaseHolder(view: View) : RecyclerView.ViewHolder(view), ItemTouchHelperViewHolder {
         abstract fun bind(data : Pair<PlanetsData, Boolean>)
+        override fun onItemSelect() {
+            itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.light_red))
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
     }
 
     inner class HeaderViewHolder(private val binding: RecyclerHeaderLinearHolderBinding)
@@ -158,6 +166,17 @@ class EarthRecyclerViewAdapter(
                 notifyItemChanged(layoutPosition)
             }
         }
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        listPlanetsData.removeAt(fromPosition).apply {
+            listPlanetsData.add(toPosition, this)
+        }
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        callbackRemove.remove(position)
     }
 }
 

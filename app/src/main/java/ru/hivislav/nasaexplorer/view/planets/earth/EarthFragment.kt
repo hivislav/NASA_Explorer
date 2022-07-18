@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import ru.hivislav.nasaexplorer.databinding.FragmentEarthBinding
 import ru.hivislav.nasaexplorer.model.entities.PlanetsData
 import ru.hivislav.nasaexplorer.model.entities.TYPE_EARTH
@@ -44,6 +45,8 @@ class EarthFragment : Fragment() {
         binding.earthRecycler.adapter = adapter.apply {
             setPlanetsData(data)
         }
+
+        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.earthRecycler)
     }
 
     private val callbackAdd = AddItem {
