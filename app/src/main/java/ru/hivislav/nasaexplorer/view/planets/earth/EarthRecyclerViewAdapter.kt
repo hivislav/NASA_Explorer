@@ -3,14 +3,13 @@ package ru.hivislav.nasaexplorer.view.planets.earth
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import kotlinx.android.synthetic.main.recycler_mars_grid_holder.view.*
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.RecyclerEarthLinearHolderBinding
 import ru.hivislav.nasaexplorer.databinding.RecyclerHeaderLinearHolderBinding
-import ru.hivislav.nasaexplorer.databinding.RecyclerMarsGridHolderBinding
 import ru.hivislav.nasaexplorer.databinding.RecyclerMarsLinearHolderBinding
 import ru.hivislav.nasaexplorer.model.entities.*
 
@@ -19,6 +18,12 @@ class EarthRecyclerViewAdapter(
 ) : RecyclerView.Adapter<EarthRecyclerViewAdapter.BaseHolder>(), ItemTouchHelperAdapter {
 
     private var listPlanetsData: MutableList<Pair<PlanetsData, Boolean>> = mutableListOf()
+
+    fun setListDataForDiffUtil(listPlanetsDataNew: MutableList<Pair<PlanetsData, Boolean>>) {
+        val diff = DiffUtil.calculateDiff(DiffUtilCallback(listPlanetsData, listPlanetsDataNew))
+        diff.dispatchUpdatesTo(this)
+        listPlanetsData = listPlanetsDataNew
+    }
 
     fun setPlanetsData(data: MutableList<Pair<PlanetsData, Boolean>>) {
         listPlanetsData = data
@@ -33,7 +38,6 @@ class EarthRecyclerViewAdapter(
         listPlanetsData = listDataNew
         notifyItemInserted(position)
     }
-
 
     override fun getItemViewType(position: Int): Int {
         return listPlanetsData[position].first.planetType
@@ -60,6 +64,20 @@ class EarthRecyclerViewAdapter(
         holder.bind(listPlanetsData[position])
     }
 
+    override fun onBindViewHolder(
+        holder: BaseHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        } else {
+            val createCombinedPayloads = createCombinedPayloads(payloads as List<Change<Pair<PlanetsData, Boolean>>>)
+            if (createCombinedPayloads.newData.first.planetName != createCombinedPayloads.oldData.first.planetName)
+            holder.itemView.findViewById<TextView>(R.id.planetNameTitle).text = createCombinedPayloads.newData.first.planetName
+        }
+    }
+
     override fun getItemCount(): Int {
         return listPlanetsData.size
     }
@@ -78,14 +96,14 @@ class EarthRecyclerViewAdapter(
     inner class HeaderViewHolder(private val binding: RecyclerHeaderLinearHolderBinding)
         : BaseHolder(binding.root) {
         override fun bind(data : Pair<PlanetsData, Boolean>) {
-            binding.headerNameTitle.text = data.first.planetName
+            binding.planetNameTitle.text = data.first.planetName
         }
     }
 
     inner class MarsViewHolder(private val binding: RecyclerMarsLinearHolderBinding)
         : BaseHolder(binding.root) {
         override fun bind(data : Pair<PlanetsData, Boolean>) {
-            binding.marsNameTitle.text = data.first.planetName
+            binding.planetNameTitle.text = data.first.planetName
 
             binding.addItemImageView.setOnClickListener {
                 callbackAdd.add(layoutPosition)
@@ -128,7 +146,7 @@ class EarthRecyclerViewAdapter(
     inner class EarthViewHolder(private val binding: RecyclerEarthLinearHolderBinding)
         : BaseHolder(binding.root) {
         override fun bind(data : Pair<PlanetsData, Boolean>) {
-            binding.earthNameTitle.text = data.first.planetName
+            binding.planetNameTitle.text = data.first.planetName
 
             binding.addItemImageView.setOnClickListener {
                 callbackAdd.add(layoutPosition)

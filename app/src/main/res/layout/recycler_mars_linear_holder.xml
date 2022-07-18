@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/bg_mars" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/marsNameTitle"
+        android:id="@+id/planetNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -50,10 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:tint="@color/design_default_color_error"
-        app:layout_constraintBottom_toBottomOf="@+id/marsNameTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/planetNameTitle"
         app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
-        app:layout_constraintStart_toEndOf="@+id/marsNameTitle"
-        app:layout_constraintTop_toTopOf="@+id/marsNameTitle"
+        app:layout_constraintStart_toEndOf="@+id/planetNameTitle"
+        app:layout_constraintTop_toTopOf="@+id/planetNameTitle"
         app:srcCompat="@android:drawable/arrow_up_float" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -62,10 +62,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:tint="@color/design_default_color_error"
-        app:layout_constraintBottom_toBottomOf="@+id/marsNameTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/planetNameTitle"
         app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
         app:layout_constraintStart_toEndOf="@+id/moveItemUp"
-        app:layout_constraintTop_toTopOf="@+id/marsNameTitle"
+        app:layout_constraintTop_toTopOf="@+id/planetNameTitle"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <androidx.appcompat.widget.AppCompatTextView
