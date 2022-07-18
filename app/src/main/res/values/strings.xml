@@ -113,5 +113,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="settings_fragment_night_mode_label">Ночной режим</string>
+    <string name="full_size_photo_mars_content_desrciption">Full size photo Mars</string>
 
 </resources>

@@ -7,17 +7,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.load
 import coil.size.Scale
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_pic_of_the_day.view.*
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentPicOfTheDayBinding
+import ru.hivislav.nasaexplorer.utils.hide
 import ru.hivislav.nasaexplorer.utils.setMyDate
+import ru.hivislav.nasaexplorer.utils.show
 import ru.hivislav.nasaexplorer.viewmodel.AppState
 import ru.hivislav.nasaexplorer.viewmodel.MainViewModel
 import java.util.*
@@ -32,6 +42,8 @@ class PicOfTheDayFragment : Fragment() {
     }
 
     private lateinit var imageLoader: ImageLoader
+
+    var isCrop = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -51,13 +63,46 @@ class PicOfTheDayFragment : Fragment() {
             viewModel.sendRequestByDate(currentDate.setMyDate(date ?: 0))
         }
 
-
-
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("$WIKI_BASE_URL${binding.input.text.toString()}")
             })
         }
+
+        binding.mainFragmentPicOfTheDay.setOnClickListener {
+            animatePicOfTheDay()
+        }
+    }
+
+    private fun animatePicOfTheDay() {
+        isCrop = !isCrop
+
+        val params = binding.picOfTheDayConstraint.layoutParams
+
+        val transitionSet = TransitionSet()
+        val changeImageTransform = ChangeImageTransform()
+        val changeBounds = ChangeBounds()
+        changeBounds.duration = 500L
+        changeImageTransform.duration = 500L
+
+        transitionSet.ordering = TransitionSet.ORDERING_TOGETHER
+
+        transitionSet.addTransition(changeBounds)
+        transitionSet.addTransition(changeImageTransform)
+
+        TransitionManager.beginDelayedTransition(binding.root, transitionSet)
+        if (isCrop) {
+            params.height = ConstraintLayout.LayoutParams.MATCH_PARENT
+            binding.inputLayout.hide()
+            binding.mainFragmentPicOfTheDayDescription.hide()
+            binding.mainFragmentPicOfTheDay.scaleType = ImageView.ScaleType.FIT_CENTER
+        } else {
+            params.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+            binding.mainFragmentPicOfTheDay.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            binding.inputLayout.show()
+            binding.mainFragmentPicOfTheDayDescription.show()
+        }
+        binding.picOfTheDayConstraint.layoutParams = params
     }
 
     override fun onDestroyView() {

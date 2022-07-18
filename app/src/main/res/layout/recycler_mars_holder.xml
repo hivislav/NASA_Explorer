@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_mars_recycler_holder"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -20,7 +20,9 @@
         android:id="@+id/photoRecyclerMarsHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/main_fragment_padding"
         android:layout_gravity="center"
+        android:adjustViewBounds="true"
         tools:src="@drawable/bg_mars"
         android:contentDescription="@string/mars_photo_placeholder">
     </ImageView>

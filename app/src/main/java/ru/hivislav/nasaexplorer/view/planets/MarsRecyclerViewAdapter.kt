@@ -5,13 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.load
+import kotlinx.android.synthetic.main.fragment_mars.view.*
+import kotlinx.android.synthetic.main.recycler_mars_holder.view.*
 import ru.hivislav.nasaexplorer.R
+import ru.hivislav.nasaexplorer.databinding.FragmentMarsBinding
+import ru.hivislav.nasaexplorer.databinding.RecyclerMarsHolderBinding
 import ru.hivislav.nasaexplorer.model.entities.MarsPhotoDTO
 
-class MarsRecyclerViewAdapter:RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsHolder>() {
+class MarsRecyclerViewAdapter(
+    private val onItemViewClickListener: MarsFragment.OnItemViewClickListener?
+) : RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsHolder>() {
 
     private var marsPhotoData: List<MarsPhotoDTO> = listOf()
 
@@ -21,10 +32,8 @@ class MarsRecyclerViewAdapter:RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsH
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsHolder {
-        val context: Context = parent.context
-        val inflater: LayoutInflater = LayoutInflater.from(context)
-        val view: View = inflater.inflate(R.layout.recycler_mars_holder, parent, false)
-        return MarsHolder(view)
+        val binding = RecyclerMarsHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MarsHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MarsHolder, position: Int) {
@@ -35,13 +44,17 @@ class MarsRecyclerViewAdapter:RecyclerView.Adapter<MarsRecyclerViewAdapter.MarsH
         return marsPhotoData.size
     }
 
-    inner class MarsHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MarsHolder(private val binding: RecyclerMarsHolderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(marsPhoto : MarsPhotoDTO) {
+            itemView.photoRecyclerMarsHolder.setOnClickListener {
+                onItemViewClickListener?.onItemViewClick(marsPhoto)
+            }
+
             itemView.apply {
-                findViewById<ImageView>(R.id.photoRecyclerMarsHolder).load(marsPhoto.imgSrc) {
+                binding.photoRecyclerMarsHolder.load(marsPhoto.imgSrc) {
                     placeholder(R.drawable.bg_mars)
                 }
-                findViewById<TextView>(R.id.earthDateRecyclerMarsHolder).text = marsPhoto.earthDate
+                binding.earthDateRecyclerMarsHolder.text = marsPhoto.earthDate
             }
         }
     }
