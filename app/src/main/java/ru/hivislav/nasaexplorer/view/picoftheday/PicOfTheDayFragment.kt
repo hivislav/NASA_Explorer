@@ -1,15 +1,29 @@
 package ru.hivislav.nasaexplorer.view.picoftheday
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
+import android.os.Build.VERSION.SDK
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.ChangeBounds
@@ -22,7 +36,6 @@ import coil.decode.ImageDecoderDecoder
 import coil.load
 import coil.size.Scale
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_pic_of_the_day.view.*
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentPicOfTheDayBinding
 import ru.hivislav.nasaexplorer.utils.hide
@@ -31,6 +44,7 @@ import ru.hivislav.nasaexplorer.utils.show
 import ru.hivislav.nasaexplorer.viewmodel.AppState
 import ru.hivislav.nasaexplorer.viewmodel.MainViewModel
 import java.util.*
+
 
 class PicOfTheDayFragment : Fragment() {
 
@@ -138,7 +152,19 @@ class PicOfTheDayFragment : Fragment() {
                 binding.mainFragmentPicOfTheDay.load(appState.pictureOfTheDayResponseDTO.url) {
                     scale(Scale.FIT)
                 }
-                binding.mainFragmentPicOfTheDayDescription.text = appState.pictureOfTheDayResponseDTO.explanation
+
+                val explanation = appState.pictureOfTheDayResponseDTO.explanation
+                val typeface = Typeface.create(ResourcesCompat.getFont(requireContext(), R.font.audiowide), Typeface.BOLD)
+                val spannableString = SpannableString(explanation)
+                spannableString.apply {
+                    setSpan(ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.light_red)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(AbsoluteSizeSpan(30, true), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    if (SDK_INT >= Build.VERSION_CODES.P) {
+                        setSpan(TypefaceSpan(typeface), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
+                }
+
+                binding.mainFragmentPicOfTheDayDescription.text = spannableString
             }
         }
     }
