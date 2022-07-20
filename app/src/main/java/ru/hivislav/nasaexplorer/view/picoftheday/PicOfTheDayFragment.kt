@@ -1,12 +1,9 @@
 package ru.hivislav.nasaexplorer.view.picoftheday
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
-import android.os.Build.VERSION.SDK
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.text.Spannable
@@ -14,13 +11,10 @@ import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat

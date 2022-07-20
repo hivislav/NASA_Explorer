@@ -11,7 +11,9 @@ import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.RecyclerEarthLinearHolderBinding
 import ru.hivislav.nasaexplorer.databinding.RecyclerHeaderLinearHolderBinding
 import ru.hivislav.nasaexplorer.databinding.RecyclerMarsLinearHolderBinding
-import ru.hivislav.nasaexplorer.model.entities.*
+import ru.hivislav.nasaexplorer.model.entities.PlanetsData
+import ru.hivislav.nasaexplorer.model.entities.TYPE_EARTH
+import ru.hivislav.nasaexplorer.model.entities.TYPE_MARS
 
 class EarthRecyclerViewAdapter(
     val callbackAdd: AddItem, val callbackRemove: RemoveItem
