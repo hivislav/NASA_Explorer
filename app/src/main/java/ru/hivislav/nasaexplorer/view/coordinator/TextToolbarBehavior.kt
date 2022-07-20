@@ -5,9 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.widget.NestedScrollView
 import com.google.android.material.appbar.AppBarLayout
-import ru.hivislav.nasaexplorer.R
 import kotlin.math.abs
 
 class TextToolbarBehavior(context: Context, attrs: AttributeSet? = null) :

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.planets.MarsFragment"
+    tools:context=".view.planets.mars.MarsFragment"
     android:orientation="vertical">
 
     <ImageView
@@ -12,5 +12,5 @@
         android:scaleType="centerInside"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/full_size_photo_mars_content_desrciption" />
+        android:contentDescription="@string/full_size_photo_mars_content_description" />
 </LinearLayout>

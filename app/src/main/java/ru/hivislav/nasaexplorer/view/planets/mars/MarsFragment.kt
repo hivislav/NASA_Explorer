@@ -1,30 +1,19 @@
-package ru.hivislav.nasaexplorer.view.planets
+package ru.hivislav.nasaexplorer.view.planets.mars
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.ChangeBounds
-import androidx.transition.ChangeImageTransform
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
-import coil.load
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.recycler_mars_holder.view.*
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.FragmentMarsBinding
 import ru.hivislav.nasaexplorer.model.entities.MarsPhotoDTO
-import ru.hivislav.nasaexplorer.utils.hide
-import ru.hivislav.nasaexplorer.utils.show
+import ru.hivislav.nasaexplorer.view.planets.FullScreenPictureDialogFragment
 import ru.hivislav.nasaexplorer.viewmodel.MarsAppState
 import ru.hivislav.nasaexplorer.viewmodel.MarsViewModel
 
