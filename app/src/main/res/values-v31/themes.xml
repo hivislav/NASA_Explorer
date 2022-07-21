@@ -21,6 +21,11 @@
 
         <item name="bottomNavigationStyle">@style/myBottomNavigationStyle</item>
 
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splashscreen_animated</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="android:windowSplashScreenAnimationDuration">2147483647</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+
     </style>
 
     <style name="myBottomNavigationStyle" parent="Widget.Material3.BottomNavigationView">
@@ -32,7 +37,7 @@
     </style>
 
     <style name="Theme.SplashTheme" parent="Theme.NASAExplorer">
-        <item name="android:windowBackground">@drawable/splash_start_logo</item>
+
     </style>
 
     <style name="Theme.NASAExplorerRed" parent="Theme.NASAExplorer">

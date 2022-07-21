@@ -1,8 +1,13 @@
 package ru.hivislav.nasaexplorer.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.ActivityMainBinding
@@ -24,10 +29,11 @@ class MainActivity : AppCompatActivity() {
     private val KEY_NIGHT_MODE = "night_mode"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+        binding =  ActivityMainBinding.inflate(layoutInflater)
 
         setTheme(applyAppStyle(getCurrentTheme()))
-        binding =  ActivityMainBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
