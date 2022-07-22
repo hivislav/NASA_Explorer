@@ -21,6 +21,7 @@
     <string name="fragment_settings_tab_red_theme">Красная тема</string>
     <string name="fragment_settings_tab_gold_theme">Золотая тема</string>
     <string name="mars_photo_placeholder">Mars photo placeholder</string>
+    <string name="earth_photo_placeholder">Earth photo placeholder</string>
     <string name="coordinator">Coordinator</string>
 
     <string name="large_text" translatable="false">
@@ -113,6 +114,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="settings_fragment_night_mode_label">Ночной режим</string>
-    <string name="full_size_photo_mars_content_desrciption">Full size photo Mars</string>
+    <string name="full_size_photo_mars_content_description">Full size photo Mars</string>
+    <string name="large_text_mars">Марс — четвёртая по удалённости от Солнца и седьмая по размерам планета Солнечной системы. Названа в честь Марса — древнеримского бога войны, соответствующего древнегреческому Аресу. Иногда Марс называют «красной планетой» из-за красноватого оттенка поверхности, придаваемого ей минералом маггемитом (оксидом железа).</string>
 
 </resources>
+

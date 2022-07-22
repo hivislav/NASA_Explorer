@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import androidx.transition.ChangeBounds
 import androidx.transition.ChangeImageTransform
@@ -14,10 +13,8 @@ import androidx.transition.TransitionSet
 import coil.load
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.DialogFragmentFullScreenPictureBinding
-import ru.hivislav.nasaexplorer.databinding.FragmentPicOfTheDayBinding
-import ru.hivislav.nasaexplorer.utils.hide
-import ru.hivislav.nasaexplorer.utils.show
-import ru.hivislav.nasaexplorer.view.planets.MarsFragment.Companion.FULL_SCREEN_DIALOG_FRAGMENT_BUNDLE_EXTRA
+import ru.hivislav.nasaexplorer.view.planets.mars.MarsFragment
+import ru.hivislav.nasaexplorer.view.planets.mars.MarsFragment.Companion.FULL_SCREEN_DIALOG_FRAGMENT_BUNDLE_EXTRA
 
 class FullScreenPictureDialogFragment : DialogFragment() {
 

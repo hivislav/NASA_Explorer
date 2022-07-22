@@ -1,23 +1,12 @@
-package ru.hivislav.nasaexplorer.view.planets
+package ru.hivislav.nasaexplorer.view.planets.mars
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.ChangeBounds
-import androidx.transition.ChangeImageTransform
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
 import coil.load
-import kotlinx.android.synthetic.main.fragment_mars.view.*
-import kotlinx.android.synthetic.main.recycler_mars_holder.view.*
+import kotlinx.android.synthetic.main.recycler_mars_grid_holder.view.*
 import ru.hivislav.nasaexplorer.R
-import ru.hivislav.nasaexplorer.databinding.FragmentMarsBinding
-import ru.hivislav.nasaexplorer.databinding.RecyclerMarsHolderBinding
+import ru.hivislav.nasaexplorer.databinding.RecyclerMarsGridHolderBinding
 import ru.hivislav.nasaexplorer.model.entities.MarsPhotoDTO
 
 class MarsRecyclerViewAdapter(
@@ -32,7 +21,7 @@ class MarsRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsHolder {
-        val binding = RecyclerMarsHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RecyclerMarsGridHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MarsHolder(binding)
     }
 
@@ -44,7 +33,7 @@ class MarsRecyclerViewAdapter(
         return marsPhotoData.size
     }
 
-    inner class MarsHolder(private val binding: RecyclerMarsHolderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MarsHolder(private val binding: RecyclerMarsGridHolderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(marsPhoto : MarsPhotoDTO) {
             itemView.photoRecyclerMarsHolder.setOnClickListener {
                 onItemViewClickListener?.onItemViewClick(marsPhoto)
