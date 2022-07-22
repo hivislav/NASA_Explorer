@@ -10,24 +10,28 @@
         android:id="@+id/navBottomCoordinator"
         android:icon="@drawable/ic_coordinator"
         android:title="@string/coordinator"
+        android:orderInCategory="1"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navBottomPicOfTheDay"
         android:icon="@drawable/ic_pic_of_the_day"
         android:title="@string/nav_bottom_pic_of_the_day"
+        android:orderInCategory="2"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navBottomPlanets"
         android:icon="@drawable/ic_planets"
         android:title="@string/nav_bottom_planets"
+        android:orderInCategory="3"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navBottomSettings"
         android:icon="@drawable/ic_settings"
         android:title="@string/nav_bottom_settings"
+        android:orderInCategory="4"
         app:showAsAction="ifRoom" />
 
 </menu>

@@ -1,13 +1,8 @@
 package ru.hivislav.nasaexplorer.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import ru.hivislav.nasaexplorer.R
 import ru.hivislav.nasaexplorer.databinding.ActivityMainBinding
@@ -41,23 +36,44 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainBottomNavigation.selectedItemId = R.id.navBottomPicOfTheDay
+        var menuItemOrder = 2
 
         binding.mainBottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navBottomPicOfTheDay -> {
-                    navigateTo(PicOfTheDayBaseFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(PicOfTheDayBaseFragment.newInstance())
+                    } else {
+                        navigateToRight(PicOfTheDayBaseFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomPlanets -> {
-                    navigateTo(PlanetsBaseFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(PlanetsBaseFragment.newInstance())
+                    } else {
+                        navigateToRight(PlanetsBaseFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomSettings -> {
-                    navigateTo(SettingsFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(SettingsFragment.newInstance())
+                    } else {
+                        navigateToRight(SettingsFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomCoordinator -> {
-                    navigateTo(CoordinatorFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(CoordinatorFragment.newInstance())
+                    } else {
+                        navigateToRight(CoordinatorFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 else -> false
@@ -65,8 +81,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateTo(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+    private fun navigateToLeft(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.fade_in, R.anim.fade_out)
+            .replace(R.id.container, fragment)
+            .commit()
+    }
+
+    private fun navigateToRight(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.fade_in, R.anim.fade_out)
+            .replace(R.id.container, fragment)
+            .commit()
     }
 
     fun setCurrentTheme(currentTheme: Int) {
