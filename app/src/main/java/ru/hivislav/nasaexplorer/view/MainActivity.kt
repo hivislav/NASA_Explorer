@@ -24,10 +24,9 @@ class MainActivity : AppCompatActivity() {
     private val KEY_NIGHT_MODE = "night_mode"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        setTheme(applyAppStyle(getCurrentTheme()))
         binding =  ActivityMainBinding.inflate(layoutInflater)
 
-        setTheme(applyAppStyle(getCurrentTheme()))
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
