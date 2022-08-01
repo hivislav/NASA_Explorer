@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.planets.MarsFragment"
+    tools:context=".view.planets.mars.MarsFragment"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/marsRecycler"
-        tools:listitem="@layout/recycler_mars_holder"
+        tools:listitem="@layout/recycler_mars_grid_holder"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
         android:layout_width="match_parent"
