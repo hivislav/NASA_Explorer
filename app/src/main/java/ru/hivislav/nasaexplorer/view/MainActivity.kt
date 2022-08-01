@@ -24,10 +24,10 @@ class MainActivity : AppCompatActivity() {
     private val KEY_NIGHT_MODE = "night_mode"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         setTheme(applyAppStyle(getCurrentTheme()))
         binding =  ActivityMainBinding.inflate(layoutInflater)
+
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
@@ -35,23 +35,44 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainBottomNavigation.selectedItemId = R.id.navBottomPicOfTheDay
+        var menuItemOrder = 2
 
         binding.mainBottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navBottomPicOfTheDay -> {
-                    navigateTo(PicOfTheDayBaseFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(PicOfTheDayBaseFragment.newInstance())
+                    } else {
+                        navigateToRight(PicOfTheDayBaseFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomPlanets -> {
-                    navigateTo(PlanetsBaseFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(PlanetsBaseFragment.newInstance())
+                    } else {
+                        navigateToRight(PlanetsBaseFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomSettings -> {
-                    navigateTo(SettingsFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(SettingsFragment.newInstance())
+                    } else {
+                        navigateToRight(SettingsFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 R.id.navBottomCoordinator -> {
-                    navigateTo(CoordinatorFragment.newInstance())
+                    if (it.order < menuItemOrder) {
+                        navigateToLeft(CoordinatorFragment.newInstance())
+                    } else {
+                        navigateToRight(CoordinatorFragment.newInstance())
+                    }
+                    menuItemOrder = it.order
                     true
                 }
                 else -> false
@@ -59,8 +80,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateTo(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+    private fun navigateToLeft(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.fade_in, R.anim.fade_out)
+            .replace(R.id.container, fragment)
+            .commit()
+    }
+
+    private fun navigateToRight(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.fade_in, R.anim.fade_out)
+            .replace(R.id.container, fragment)
+            .commit()
     }
 
     fun setCurrentTheme(currentTheme: Int) {
